@@ -1,0 +1,25 @@
+# XcodeGen spec → `brew install xcodegen && cd native-ios && xcodegen` creates WebClipApp.xcodeproj
+name: WebClipApp
+options:
+  bundleIdPrefix: com.myapp
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  WebClipApp:
+    type: application
+    platform: iOS
+    sources: [WebClipApp]
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        PRODUCT_BUNDLE_IDENTIFIER: com.myapp.native
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: "MY APP"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

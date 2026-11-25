@@ -1,0 +1,60 @@
+{
+  "_README": "Central configuration. Edit the values below, then (for static hosting) run: node scripts/build-profile.mjs",
+
+  "APP_NAME": "MY APP",
+  "APP_URL": "https://YOUR-DOMAIN.com/app/",
+  "APP_ICON": "assets/icons/app-icon.png",
+  "PROFILE_IDENTIFIER": "com.myapp.webclip",
+  "FULLSCREEN": true,
+  "REMOVABLE": true,
+
+  "WEBSITE_DOMAIN": "YOUR-DOMAIN.com",
+  "ORGANIZATION": "MY APP",
+  "PROFILE_DISPLAY_NAME": "MY APP",
+  "PROFILE_DESCRIPTION": "يضيف أيقونة تطبيق MY APP إلى الشاشة الرئيسية. لا يجمع أي بيانات ويمكن حذفه في أي وقت.",
+  "PROFILE_FILENAME": "my-app.mobileconfig",
+  "PROFILE_ENDPOINT": "profile.php",
+  "STATIC_PROFILE": "profile.mobileconfig",
+  "IGNORE_MANIFEST_SCOPE": false,
+
+  "SIGNING": {
+    "_README": "Optional. Paths to a PEM certificate/key (e.g. your domain's TLS certificate). When set, the profile is signed and iOS shows it as Verified instead of Unsigned.",
+    "ENABLED": false,
+    "CERT": "/etc/letsencrypt/live/YOUR-DOMAIN.com/cert.pem",
+    "KEY": "/etc/letsencrypt/live/YOUR-DOMAIN.com/privkey.pem",
+    "CHAIN": "/etc/letsencrypt/live/YOUR-DOMAIN.com/chain.pem"
+  },
+
+  "LOADING_IMAGE": "assets/loading/loading-screen.png",
+  "INSTALL_TUTORIAL_IMAGE": "assets/install/tutorial.png",
+  "LOADING_MIN_MS": 1600,
+
+  "categories": [
+    {
+      "id": "category-one",
+      "title": "القسم الأول",
+      "subtitle": "خمس أدوات مختارة",
+      "image": "assets/categories/category-one.png",
+      "tools": [
+        { "id": "tool-01", "name": "الأداة 1", "description": "وصف قصير للأداة الأولى", "url": "https://example.com/", "image": "assets/tools/tool-01.png", "mode": "auto" },
+        { "id": "tool-02", "name": "الأداة 2", "description": "وصف قصير للأداة الثانية", "url": "https://example.org/", "image": "assets/tools/tool-02.png", "mode": "auto" },
+        { "id": "tool-03", "name": "الأداة 3", "description": "وصف قصير للأداة الثالثة", "url": "https://example.net/", "image": "assets/tools/tool-03.png", "mode": "auto" },
+        { "id": "tool-04", "name": "الأداة 4", "description": "وصف قصير للأداة الرابعة", "url": "https://www.wikipedia.org/", "image": "assets/tools/tool-04.png", "mode": "auto" },
+        { "id": "tool-05", "name": "الأداة 5", "description": "وصف قصير للأداة الخامسة", "url": "https://example.com/?t=5", "image": "assets/tools/tool-05.png", "mode": "auto" }
+      ]
+    },
+    {
+      "id": "category-two",
+      "title": "القسم الثاني",
+      "subtitle": "خمس أدوات إضافية",
+      "image": "assets/categories/category-two.png",
+      "tools": [
+        { "id": "tool-06", "name": "الأداة 6", "description": "وصف قصير للأداة السادسة", "url": "https://example.com/?t=6", "image": "assets/tools/tool-06.png", "mode": "auto" },
+        { "id": "tool-07", "name": "الأداة 7", "description": "وصف قصير للأداة السابعة", "url": "https://example.com/?t=7", "image": "assets/tools/tool-07.png", "mode": "auto" },
+        { "id": "tool-08", "name": "الأداة 8", "description": "وصف قصير للأداة الثامنة", "url": "https://example.com/?t=8", "image": "assets/tools/tool-08.png", "mode": "auto" },
+        { "id": "tool-09", "name": "الأداة 9", "description": "وصف قصير للأداة التاسعة", "url": "https://example.com/?t=9", "image": "assets/tools/tool-09.png", "mode": "auto" },
+        { "id": "tool-10", "name": "الأداة 10", "description": "وصف قصير للأداة العاشرة", "url": "https://example.com/?t=10", "image": "assets/tools/tool-10.png", "mode": "auto" }
+      ]
+    }
+  ]
+}

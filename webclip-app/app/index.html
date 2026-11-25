@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MY APP">
+  <meta name="theme-color" content="#030806">
+  <meta name="color-scheme" content="dark">
+  <meta name="format-detection" content="telephone=no">
+  <title>MY APP</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="../assets/icons/app-icon.png">
+  <link rel="icon" href="../assets/icons/app-icon.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <!-- ================= SPLASH / LOADING ================= -->
+  <div id="splash" class="splash" role="status" aria-live="polite">
+    <div class="splash__glow"></div>
+    <div class="splash__media">
+      <!-- Loading image: assets/loading/loading-screen.png (set LOADING_IMAGE in config.json) -->
+      <img id="splashImg" alt="">
+      <div class="splash__ph">
+        <div class="splash__ring"><i></i><i></i><i></i></div>
+        <small>assets/loading/loading-screen.png</small>
+      </div>
+    </div>
+    <div class="splash__name" id="splashName">MY APP</div>
+    <div class="splash__bar"><span id="splashBar"></span></div>
+    <div class="splash__pct" id="splashPct">0%</div>
+  </div>
+
+  <!-- ================= APP ================= -->
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <div class="topbar__brand">
+        <span class="topbar__icon"><img id="brandIcon" alt=""></span>
+        <div>
+          <div class="topbar__hello" id="hello">مرحباً</div>
+          <h1 class="topbar__title" id="appTitle">MY APP</h1>
+        </div>
+      </div>
+      <button class="icon-btn" data-go="search" aria-label="بحث">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="offline-bar" id="offlineBar" hidden>
+      <svg viewBox="0 0 24 24"><path d="M3 3l18 18M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5-2.7M19 13a10 10 0 0 0-2.3-1.6M2 9.5a15 15 0 0 1 4.5-2.8M22 9.5A15 15 0 0 0 11 5.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="20" r="1.3" fill="currentColor"/></svg>
+      أنت غير متصل بالإنترنت
+    </div>
+
+    <main class="views">
+      <!-- HOME -->
+      <section class="view is-active" data-view="home">
+        <div class="install-hint" id="installHint" hidden>
+          <div><b>ثبّت التطبيق على الشاشة الرئيسية</b><span>لتجربة بملء الشاشة دون شريط المتصفح.</span></div>
+          <a href="../" class="pill">تثبيت</a>
+          <button class="install-hint__x" aria-label="إغلاق" id="installHintClose">×</button>
+        </div>
+
+        <div class="strip" id="favStrip" hidden>
+          <div class="strip__head"><h2>المفضلة</h2><button class="link" data-go="favorites">الكل</button></div>
+          <div class="strip__row" id="favRow"></div>
+        </div>
+        <div class="strip" id="recentStrip" hidden>
+          <div class="strip__head"><h2>المستخدمة مؤخراً</h2><button class="link" id="clearRecentsInline">مسح</button></div>
+          <div class="strip__row" id="recentRow"></div>
+        </div>
+
+        <div id="categories"></div>
+      </section>
+
+      <!-- SEARCH -->
+      <section class="view" data-view="search">
+        <h2 class="view__title">البحث</h2>
+        <label class="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="searchInput" type="search" placeholder="ابحث عن أداة…" autocomplete="off" enterkeyhint="search">
+        </label>
+        <div class="list" id="searchResults"></div>
+      </section>
+
+      <!-- FAVORITES -->
+      <section class="view" data-view="favorites">
+        <h2 class="view__title">المفضلة</h2>
+        <div class="list" id="favList"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" data-view="settings">
+        <h2 class="view__title">الإعدادات</h2>
+        <div class="group">
+          <div class="group__label">المظهر</div>
+          <div class="row"><span>المظهر الداكن</span>
+            <div class="seg" id="themeSeg"><button data-v="dark">داكن</button><button data-v="oled">أسود OLED</button></div>
+          </div>
+          <label class="row"><span>الحركات والتأثيرات</span><input type="checkbox" class="toggle" data-pref="animations"></label>
+          <label class="row"><span>شاشة التحميل عند الفتح</span><input type="checkbox" class="toggle" data-pref="showSplash"></label>
+        </div>
+        <div class="group">
+          <div class="group__label">التصفح</div>
+          <div class="row"><span>فتح الأدوات</span>
+            <div class="seg" id="openSeg"><button data-v="inapp">داخل التطبيق</button><button data-v="safari">نافذة Safari</button></div>
+          </div>
+          <label class="row"><span>الاهتزاز عند اللمس</span><input type="checkbox" class="toggle" data-pref="haptics"></label>
+        </div>
+        <div class="group">
+          <div class="group__label">البيانات (محفوظة على جهازك فقط)</div>
+          <button class="row row--btn" id="clearRecents">مسح سجل الاستخدام</button>
+          <button class="row row--btn" id="clearFavs">مسح المفضلة</button>
+          <button class="row row--btn row--danger" id="resetAll">إعادة ضبط التطبيق</button>
+        </div>
+        <div class="group">
+          <div class="group__label">حول</div>
+          <a class="row row--btn" href="../">صفحة التثبيت</a>
+          <div class="row row--note">لإزالة التطبيق: الإعدادات ← عام ← VPN وإدارة الجهاز ← اختر الملف ← إزالة ملف التعريف. لا يجمع التطبيق أي بيانات شخصية.</div>
+          <div class="row row--note" id="versionNote"></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="tabbar" aria-label="التنقل">
+      <button class="tab is-active" data-go="home"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>الرئيسية</span></button>
+      <button class="tab" data-go="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>بحث</span></button>
+      <button class="tab" data-go="favorites"><svg viewBox="0 0 24 24"><path d="m12 20-1.2-1.1C6 14.6 3 11.9 3 8.5 3 5.9 5 4 7.5 4c1.7 0 3.4.8 4.5 2.1C13.1 4.8 14.8 4 16.5 4 19 4 21 5.9 21 8.5c0 3.4-3 6.1-7.8 10.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>المفضلة</span></button>
+      <button class="tab" data-go="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>الإعدادات</span></button>
+    </nav>
+  </div>
+
+  <!-- ================= IN-APP BROWSER ================= -->
+  <div id="browser" class="browser" hidden aria-modal="true" role="dialog">
+    <div class="browser__top">
+      <button class="icon-btn" id="bClose" aria-label="إغلاق"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div class="browser__title">
+        <span class="browser__icon"><img id="bIcon" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility=''"></span>
+        <div><b id="bTitle">—</b><small id="bDomain"></small></div>
+      </div>
+      <button class="icon-btn" id="bFav" aria-label="مفضلة"><svg viewBox="0 0 24 24"><path d="m12 20-1.2-1.1C6 14.6 3 11.9 3 8.5 3 5.9 5 4 7.5 4c1.7 0 3.4.8 4.5 2.1C13.1 4.8 14.8 4 16.5 4 19 4 21 5.9 21 8.5c0 3.4-3 6.1-7.8 10.4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="browser__progress"><span id="bProgress"></span></div>
+    <div class="browser__body" id="bBody">
+      <div class="browser__loading" id="bLoading">
+        <div class="loader"><span class="loader__icon"><img id="bLoadIcon" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility=''"></span><i></i></div>
+        <p>جارٍ التحميل…</p>
+        <button class="pill pill--ghost" id="bSlowOpen" hidden>يستغرق وقتاً؟ افتح في Safari</button>
+      </div>
+      <div class="browser__error" id="bError" hidden>
+        <div class="browser__error-icon" id="bErrIcon"></div>
+        <h3 id="bErrTitle">تعذّر فتح الصفحة</h3>
+        <p id="bErrText"></p>
+        <div class="browser__error-actions">
+          <button class="pill" id="bRetry">إعادة المحاولة</button>
+          <button class="pill pill--ghost" id="bExternal">فتح في نافذة Safari</button>
+        </div>
+      </div>
+    </div>
+    <div class="browser__bar">
+      <button class="icon-btn" id="bBack" aria-label="رجوع"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="icon-btn" id="bFwd" aria-label="تقدّم"><svg viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="icon-btn" id="bHome" aria-label="الرئيسية"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+      <button class="icon-btn" id="bReload" aria-label="تحديث"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="icon-btn" id="bOpenOut" aria-label="فتح في Safari"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ================= ACTION SHEET ================= -->
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel">
+      <div class="sheet__head"><span class="sheet__icon" id="sheetIcon"></span><div><b id="sheetTitle"></b><small id="sheetDesc"></small></div></div>
+      <button class="sheet__btn" id="sheetOpen">فتح</button>
+      <button class="sheet__btn" id="sheetFav">إضافة إلى المفضلة</button>
+      <button class="sheet__btn" id="sheetSafari">فتح في نافذة Safari</button>
+      <button class="sheet__btn" id="sheetCopy">نسخ الرابط</button>
+      <button class="sheet__btn sheet__btn--cancel" data-close>إلغاء</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

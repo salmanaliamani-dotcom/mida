@@ -1,0 +1,20 @@
+{
+  "name": "MY APP",
+  "short_name": "MY APP",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#030806",
+  "theme_color": "#030806",
+  "icons": [
+    {
+      "src": "../assets/icons/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#030806">
+  <meta name="color-scheme" content="dark">
+  <meta name="format-detection" content="telephone=no">
+  <title>تثبيت التطبيق</title>
+  <meta name="description" content="ثبّت التطبيق على شاشة iPhone الرئيسية عبر ملف تعريف موقّع من الموقع.">
+  <link rel="apple-touch-icon" href="assets/icons/app-icon.png">
+  <link rel="icon" href="assets/icons/app-icon.png">
+  <link rel="stylesheet" href="install/install.css">
+  <script>
+    // Opened from the Home Screen icon by mistake → go straight to the app.
+    if (window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches) {
+      location.replace('app/');
+    }
+  </script>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__glow bg__glow--a"></div>
+    <div class="bg__glow bg__glow--b"></div>
+    <div class="bg__grid"></div>
+  </div>
+
+  <main class="wrap">
+    <header class="brand reveal">
+      <div class="brand__icon">
+        <img data-cfg-src="APP_ICON" alt="" onerror="this.parentNode.classList.add('is-missing');this.remove()">
+        <span class="brand__ph">APP<br>ICON</span>
+      </div>
+      <div>
+        <div class="brand__name" data-cfg-text="APP_NAME">MY APP</div>
+        <div class="brand__tag">تطبيق ويب لـ iPhone</div>
+      </div>
+    </header>
+
+    <h1 class="title reveal">ثبّت <span class="accent" data-cfg-text="APP_NAME">MY APP</span><br>على شاشتك الرئيسية</h1>
+    <p class="lead reveal">ثلاث خطوات بسيطة وتظهر أيقونة التطبيق بجانب تطبيقاتك. لا حاجة إلى App Store.</p>
+
+    <!-- Step progress -->
+    <ol class="steps reveal" id="steps" aria-label="مراحل التثبيت">
+      <li class="step is-active" data-step="1"><span class="step__dot">1</span><span class="step__label">تحميل الملف</span></li>
+      <li class="step" data-step="2"><span class="step__dot">2</span><span class="step__label">السماح</span></li>
+      <li class="step" data-step="3"><span class="step__dot">3</span><span class="step__label">التثبيت</span></li>
+      <li class="step" data-step="4"><span class="step__dot">4</span><span class="step__label">جاهز</span></li>
+    </ol>
+
+    <!-- Animated iPhone mockup -->
+    <section class="phone-stage reveal" aria-hidden="true">
+      <div class="phone">
+        <div class="phone__btn phone__btn--l1"></div>
+        <div class="phone__btn phone__btn--l2"></div>
+        <div class="phone__btn phone__btn--r"></div>
+        <div class="phone__screen">
+          <div class="phone__island"></div>
+          <!-- Installation tutorial image placeholder: assets/install/tutorial.png -->
+          <img class="phone__tutorial" data-cfg-src="INSTALL_TUTORIAL_IMAGE" alt=""
+               onload="this.closest('.phone__screen').classList.add('has-tutorial')"
+               onerror="this.remove()">
+          <div class="mock-home">
+            <div class="mock-grid">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <b class="mock-app"><span class="mock-app__icon"><img data-cfg-src="APP_ICON" alt="" onerror="this.remove()"></span><span class="mock-app__label" data-cfg-text="APP_NAME">MY APP</span></b>
+            </div>
+            <div class="mock-dock"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="tutorial-ph">مكان صورة شرح التثبيت<br><code>assets/install/tutorial.png</code></div>
+        </div>
+      </div>
+      <div class="phone-reflection"></div>
+    </section>
+
+    <!-- Environment warnings (filled by install.js) -->
+    <div class="notice" id="notice" hidden></div>
+
+    <section class="cta reveal" id="cta">
+      <a class="install-btn" id="installBtn" href="profile.php" rel="nofollow">
+        <span class="install-btn__shine"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>ابدأ التثبيت</span>
+      </a>
+      <p class="cta__note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ملف تعريف موقع من <b data-cfg-text="WEBSITE_DOMAIN">YOUR-DOMAIN.com</b> ويمكن حذفه في أي وقت.
+      </p>
+    </section>
+
+    <!-- STEP 2: shown right after the download is triggered -->
+    <section class="panel" id="allowPanel" hidden>
+      <div class="panel__head"><span class="badge">الخطوة 2</span><h2>اضغط «Allow / السماح»</h2></div>
+      <p>سيعرض iPhone رسالة النظام: <i>«This website is trying to download a configuration profile. Do you want to allow this?»</i> اختر <b>Allow</b> ثم <b>Close</b>.</p>
+      <button class="ghost-btn" id="toTutorial" type="button">تم، أكمل الشرح ←</button>
+    </section>
+
+    <!-- STEP 3: install in Settings -->
+    <section class="panel tutorial" id="tutorial" hidden>
+      <div class="panel__head"><span class="badge">الخطوة 3</span><h2>ثبّت الملف من الإعدادات</h2></div>
+      <p class="muted">iOS لا يثبّت الملفات تلقائياً. يجب أن توافق أنت على التثبيت من تطبيق الإعدادات.</p>
+      <ol class="tut-list">
+        <li class="tut">
+          <span class="tut__icon tut__icon--settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <div><b>افتح الإعدادات</b><span>اخرج من Safari وافتح تطبيق «الإعدادات» (Settings).</span></div>
+        </li>
+        <li class="tut">
+          <span class="tut__icon"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <div><b>اضغط «تم تنزيل ملف التعريف»</b><span>يظهر أعلى الإعدادات (Profile Downloaded). إن لم يظهر: <code id="profilePath">الإعدادات ← عام ← VPN وإدارة الجهاز</code></span></div>
+        </li>
+        <li class="tut">
+          <span class="tut__icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <div><b>افتح ملف <span data-cfg-text="PROFILE_DISPLAY_NAME">MY APP</span></b><span>ستجد اسم الملف ضمن «ملف التعريف المُنزّل».</span></div>
+        </li>
+        <li class="tut">
+          <span class="tut__icon"><svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>اضغط «تثبيت» (Install)</b><span>في أعلى يمين الشاشة، ثم أدخل رمز الدخول إن طُلب.</span></div>
+        </li>
+        <li class="tut">
+          <span class="tut__icon"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>أكّد التثبيت</b><span>اضغط «تثبيت» مرة أخرى ثم «تم». ستجد الأيقونة على الشاشة الرئيسية.</span></div>
+        </li>
+      </ol>
+      <button class="ghost-btn" id="doneBtn" type="button">ثبّتُ الملف ✓</button>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="panel done" id="donePanel" hidden>
+      <div class="done__check"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>كل شيء جاهز</h2>
+      <p>افتح أيقونة <b data-cfg-text="APP_NAME">MY APP</b> من الشاشة الرئيسية لتشغيل التطبيق بملء الشاشة.</p>
+      <a class="ghost-btn" href="app/">أو افتح التطبيق هنا في Safari</a>
+    </section>
+
+    <section class="faq reveal">
+      <details>
+        <summary>ماذا يحتوي ملف التعريف؟</summary>
+        <p>يحتوي فقط على «Web Clip»: اسم التطبيق وأيقونته ورابطه. لا يحتوي على شهادات أو VPN أو إدارة للجهاز (MDM)، ولا يجمع أي بيانات.</p>
+      </details>
+      <details>
+        <summary>كيف أحذف التطبيق؟</summary>
+        <p>اضغط مطولاً على الأيقونة واختر «إزالة»، أو احذف الملف من: <code>الإعدادات ← عام ← VPN وإدارة الجهاز</code> ← اختر الملف ← «إزالة ملف التعريف».</p>
+      </details>
+      <details>
+        <summary>لماذا يظهر الملف «غير موقّع»؟</summary>
+        <p>إن لم يوقّع صاحب الموقع الملف بشهادة، يعرضه iOS كـ «Unsigned». هذا لا يغيّر محتواه، ويمكنك مراجعة تفاصيله قبل التثبيت.</p>
+      </details>
+      <details>
+        <summary>لا تظهر رسالة التحميل؟</summary>
+        <p>افتح الصفحة في <b>Safari</b> تحديداً (وليس داخل Instagram أو Chrome)، وتأكد أن تحميل ملفات التعريف غير مقيّد في «مدة استخدام الجهاز».</p>
+      </details>
+    </section>
+
+    <footer class="foot">© <span data-cfg-text="APP_NAME">MY APP</span> · <span data-cfg-text="WEBSITE_DOMAIN">YOUR-DOMAIN.com</span></footer>
+  </main>
+
+  <script src="install/install.js" defer></script>
+</body>
+</html>
