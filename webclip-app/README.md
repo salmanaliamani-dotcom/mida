@@ -130,3 +130,12 @@ The web app detects the wrapper (`window.webkit.messageHandlers.webclip`) and ha
 - [ ] Each of the 10 tools opens; blocked ones slide up in the Safari sheet
 - [ ] Airplane mode shows the offline bar and error screen, and the app shell still opens
 - [ ] Removing the profile removes the icon
+
+## 9. Cloudflare Pages
+
+Cloudflare does not run PHP, so `cloudflare/functions/` contains the same profile generator as a Pages Function (`/profile`) plus `/frame-check`. Build the deployable bundle with:
+
+```bash
+bash scripts/package-cloudflare.sh      # → dist/webclip-app-cloudflare.zip
+```
+Deploy it with `npx wrangler pages deploy` or through Git (output directory `public`). Drag-and-drop upload does not run Functions. Arabic instructions are in `cloudflare/README-AR.md`.

@@ -60,14 +60,15 @@
 
   // Use the PHP generator when PHP runs on the host, otherwise the static file built by scripts/build-profile.mjs.
   async function resolveEndpoint(cfg) {
-    const candidates = [cfg?.PROFILE_ENDPOINT || 'profile.php', cfg?.STATIC_PROFILE || 'profile.mobileconfig'];
+    // 'profile' = Cloudflare Pages Function, 'profile.php' = PHP hosting, then the static file.
+    const candidates = [...new Set(['profile', cfg?.PROFILE_ENDPOINT || 'profile.php', cfg?.STATIC_PROFILE || 'profile.mobileconfig'])];
     for (const url of candidates) {
       try {
         const res = await fetch(url, { method: 'HEAD', cache: 'no-store' });
         if (res.ok && /aspen-config|pkcs7|octet-stream/i.test(res.headers.get('content-type') || '')) return url;
       } catch {}
     }
-    return candidates[0];
+    return candidates[1];
   }
 
   /* ---------- steps ---------- */

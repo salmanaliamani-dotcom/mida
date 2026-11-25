@@ -483,9 +483,11 @@
     try {
       const ctrl = new AbortController();
       setTimeout(() => ctrl.abort(), 4000);
-      const r = await fetch('../frame-check.php', { signal: ctrl.signal });
-      if (!(r.headers.get('content-type') || '').includes('json')) return {};
-      return await r.json();
+      for (const url of ['../frame-check', '../frame-check.php']) {
+        const r = await fetch(url, { signal: ctrl.signal }).catch(() => null);
+        if (r?.ok && (r.headers.get('content-type') || '').includes('json')) return await r.json();
+      }
+      return {};
     } catch { return {}; }
   }
 
