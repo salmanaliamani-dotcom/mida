@@ -54,3 +54,11 @@ npx wrangler pages deploy
 
 - على Cloudflare يكون الملف **غير موقّع (Unsigned)**. هذا طبيعي ويُثبَّت بشكل عادي.
 - المواقع التي تمنع العرض داخل التطبيقات (Google، البنوك، أغلب مواقع التواصل) تُكتشف تلقائياً عبر `/frame-check` وتُفتح في نافذة Safari داخل التطبيق.
+
+## رفع بالسحب والإفلات (بدون Functions)
+
+إذا أردت الرفع بالسحب والإفلات، يجب تجهيز ملف التعريف مسبقاً لدومينك:
+```bash
+bash scripts/package-cloudflare-static.sh your-project.pages.dev dist "اسم التطبيق"
+```
+ثم افتح الـ zip واسحب **محتواه** (وليس الـ zip نفسه) إلى Cloudflare. الملف `_headers` ضروري، فبدونه يظهر في Safari زر «Download» عادي بدل رسالة «Allow / Ignore».
