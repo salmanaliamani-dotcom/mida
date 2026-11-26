@@ -1,0 +1,105 @@
+[shock] [fear] فيقت مكتف فشجرة… وتحت رجليا الحطب 🪵.
+[tiredness] [sighs] راسي كيضرب، والدم ناشف على وجهي.
+[calm] [suspense] والشمس ☀️ كتطلع على الدوار.
+[contempt] [suspense] بوشعيب واقف قدامي، والمشعل 🔥 فيدو.
+[aggression] [sarcasm] قال: الناس ختارو… غادي تتحرق مع الصندوق ديالك.
+[concern] [vulnerability] والتيليفون كان مربوط معايا، معلق على صدري.
+[uncertainty] [anxiety] الشاشة كحلة… الباتري مات؟ ما عرفتش.
+[sadness] [suspense] الناس واقفين ساكتين… والخوف فعينيهم.
+[sadness] [empathy] ولكن حتى واحد ما كان كيشوف فيا.
+[empathy] [concern] كانو كيشوفو فالديور ديالهم… فين الدراري كيموتو.
+[determination] [calm] وفهمت حاجة: ما بقاليش الوقت باش ندافع على راسي.
+[determination] [urgency] بقا ليا الوقت غير باش ننقذ الدراري.
+[urgency] [anger] غوت بكل ما عندي: الدراري غادي يموتو من الما… ماشي مني!
+[warning] [fear] الما فيه الدفلة 🌿! والدفلة سم!
+[laughs] [contempt] بوشعيب ضحك: كذاب حتى للتالي.
+[suspense] [sarcasm] قلت: وعلاش يديك خضرين، آ بوشعيب؟
+[suspense] [curiosity] الناس دارو كاملين… وشافو يدين بوشعيب 👀.
+[shock] [disgust] خضرين… بلون الدفلة.
+[nervousness] [fear] بوشعيب خبا يدو فالجلابة.
+[concern] [curiosity] وواحد من الرجال قال: البارح فالليل… شفتو حدا البير.
+[disbelief] [anger] والتاني قال: حتى أنا شفتو.
+[whispers] [suspense] الهمس بدا كيتزاد.
+[aggression] [shock] وبوشعيب رمى المشعل فالحطب.
+[fear] [urgency] النار 🔥 شعلات تحت رجليا.
+[fear] [vulnerability] الدخان طلع لعيني، والصهد وصل لركابي.
+[surprise] [gasps] وفجأة… حجرة طارت من وسط الناس.
+[shock] [satisfaction] ضربت بوشعيب فظهرو… طاح.
+[surprise] [tenderness] كان حميد… واقف، مريض، وكيترعد، ولكن واقف 💪.
+[vulnerability] [trust] قال بصوت ضعيف: الملاك… قال ليا نشرب غير الما المغلي.
+[determination] [pride] أنا شربت من القلة ديال الفيلتر… وما متش.
+[urgency] [relief] وبا لحسن جرا، وطفا النار بالتراب، وقطع الحبل.
+[satisfaction] [anger] والعسكر ديال القايد شدو بوشعيب.
+[concern] [urgency] ولكن ما كانش الوقت للفرحة.
+[fear] [concern] تلاتين دري كانو كيموتو فهاد اللحظة ⏳.
+[determination] [urgency] قلت للنسا: شعلو النار، وغليو الما الصافي ديال العين اللي فالجبل.
+[determination] [interest] خاصنا الملحة… والسكر.
+[concern] [frustration] السكر فـ 1760 كان غالي بحال الدهب.
+[gratitude] [relief] القايد صيفط العسكر ديالو جابو صناديق ديال السكر من القصبة.
+[calm] [trust] علمتهم: لتر ديال الما المغلي، ست معالق ديال السكر، ونص معلقة ديال الملحة 🥄.
+[calm] [tenderness] وكل دري كيشرب منو شوية بشوية، بلا ما يحبس.
+[determination] [urgency] وإيلا تقيا… عاودو عطيوه.
+[tiredness] [determination] دوزنا الليل كامل، دار بدار.
+[concern] [tenderness] وحميد ما بغاش ينعس، كان كيهز معايا القلال.
+[tenderness] [humor] قلت ليه: سير ترتاح آ الملاك الصغير.
+[pride] [joy] ضحك… وقال: دابا حتى أنا ملاك؟
+[urgency] [enthusiasm] النسا كيغليو، والرجال كيجيبو الما، وأنا كنجري بيناتهم.
+[tenderness] [hope] وبا لحسن كيدعي لكل دري 🤲، وكيعطيه الكاس.
+[hope] [suspense] مع الفجر 🌅… أول دري ناض.
+[relief] [joy] من بعدو التاني… والتالت.
+[joy] [celebration] وفالعشية… الدراري كاملين كانو كيلعبو فالساحة ⚽.
+[relief] [gratitude] حتى دري ما مات.
+[sadness] [calm] وبوشعيب… خرج من الدوار بوحدو، بلا ما يشوف فحتى واحد.
+[empathy] [sighs] وفهمت بلي حتى هو كان خايف… خايف يتنسى.
+[awe] [gratitude] الدوار كامل جا لعندي.
+[tenderness] [joy] رجال، عيالات، شيوخ، دراري.
+[admiration] [pride] والقايد بيدو جا، وقال: هاد الدوار ديالك.
+[admiration] [trust] كون نتا الشيخ ديالو، وديالنا كاملين.
+[celebration] [excitement] والناس بداو كيغوتو: الملاك! الملاك! 😇
+[calm] [determination] وفداك اللحظة… قلت الحاجة اللي كان خاصني نقولها من النهار الأول.
+[calm] [vulnerability] لا… أنا ماشي ملاك.
+[tenderness] [vulnerability] أنا غير بنادم بحالكم… جيت من بلاصة بعيدة بزاف.
+[trust] [hope] كلشي اللي درتو… نتوما تقدرو تديروه بلا بيا.
+[determination] [enthusiasm] غليو الما. غسلو يديكم. قريو ولادكم 📖.
+[pride] [calm] هادا ماشي سحر… هادي هي المعرفة.
+[tenderness] [love] الدوار سكت… وحميد جا وعنقني 🤗.
+[love] [laughs] قال: واخا… بالنسبة ليا نتا ملاك.
+[curiosity] [concern] ومن بعد، سولني: واش غادي تمشي؟
+[sadness] [uncertainty] قلت ليه: ما عرفتش… ولكن إيلا مشيت، عمرني ما ننساك.
+[cries] [love] شد فيا مزيان… بحال إيلا عارف.
+[surprise] [suspense] فالليل، حليت التيليفون… وتشعل!
+[suspense] [urgency] واحد 🪫 فالمية.
+[determination] [joy] جمعت الدوار كامل قدام البحر 🌊.
+[love] [tenderness] حميد، با لحسن، فاطمة، مها… حتى القايد.
+[joy] [humor] وقلت ليهم: ضحكو 😁.
+[nostalgia] [joy] وصورت آخر تصويرة 📸.
+[sadness] [calm] والشاشة طفات… للأبد.
+[tiredness] [contentment] رجعت للبيت ديال با لحسن، ونعست حدا الشمعة 🕯️.
+[tenderness] [love] وحميد قال ليا من الباب: تصبح على خير آ ياسين.
+[surprise] [tenderness] أول مرة كيعيط ليا بسميتي.
+[tiredness] [contentment] ونعست… بحال شي واحد ما نعسش شهور.
+[surprise] [shock] فيقت… على صوت المنبه ⏰.
+[humor] [frustration] الأربعة ديال المنبهات كيصونيو مع بعض.
+[disbelief] [wonder] البيت ديالي فكازا… الحيط، الپلافو، الپريزة.
+[disbelief] [surprise] التيليفون فوق الطبلة… مية 🔋 فالمية.
+[uncertainty] [whispers] كانت حلمة؟
+[curiosity] [suspense] حليت الكاليري… وقلبت على آخر تصويرة.
+[sadness] [disbelief] ما كانتش.
+[laughs] [sadness] ضحكت… وقلت: أكيد حلمة.
+[calm] [nostalgia] من بعد شهر، مشيت للصويرة فعطلة.
+[curiosity] [calm] دخلت للمتحف ديال المدينة القديمة.
+[boredom] [humor] كنت غير كندوز الوقت، والتيليفون فيدي.
+[interest] [suspense] وفواحد الحيط، كانت لوحة 🖼️ قديمة بزاف.
+[suspense] [curiosity] مكتوب تحتها: 1760.
+[wonder] [nostalgia] فيها دوار صغير قدام البحر.
+[joy] [nostalgia] ناس كاملين واقفين وكيضحكو.
+[suspense] [whispers] وفالوسط… دري صغير شاد يد واحد الراجل.
+[shock] [gasps] راجل لابس كاسكيطة حمرا 🧢.
+[wonder] [cries] وفيد الدري… شمعة صغيرة 🕯️.
+[whispers] [awe] وتحت اللوحة… سطر مكتوب بخط قديم.
+[cries] [awe] الملاك اللي علمنا نغليو الما.
+[shock] [vulnerability] رجليا ما بقاوش هازيني.
+[whispers] [disbelief] ماشي حلمة… ما كانتش حلمة.
+[calm] [tiredness] رجعت للدار، طفيت الضو، ونعست.
+[calm] [contentment] ونسيت التيليفون… ونسيت المنبهات.
+[suspense] [whispers] وحليت عينيا… والشمعة 🕯️ شاعلة حدايا.
