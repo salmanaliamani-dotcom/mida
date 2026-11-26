@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="node_modules/@fontsource/alexandria/800.css"><link rel="stylesheet" href="node_modules/@fontsource/alexandria/900.css">
+<style>
+html,body{margin:0;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b0d12}
+#svg{position:absolute;inset:0}
+#label{position:absolute;top:150px;left:50%;transform:translateX(-50%);direction:rtl;font-family:Alexandria;font-weight:800;font-size:64px;line-height:1;color:#fff;background:#0d0d0d;padding:26px 40px 30px;border-radius:26px;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+#label:empty{display:none}
+</style></head><body>
+<div id="stage"><svg id="svg" width="1080" height="1920" viewBox="0 0 1080 1920"></svg><div id="label"></div></div>
+<script src="stick.js"></script><script src="fast.js"></script><script src="world.js"></script><script src="tim1.js"></script><script src="shots1.js"></script>
+<script>
+const LN = TIM.lines, DUR = TIM.dur + 0.6;
+let lab = '';
+const SHOTS = SPECS.map((sp, i) => { if (sp.L) lab = sp.L; const st = i === 0 ? 0 : Math.max(0, LN[i].start - 0.12); const en = i + 1 < LN.length ? Math.max(0, LN[i + 1].start - 0.12) : DUR; return [st, en, lab, sp.f]; });
+function render(t) {
+  const sh = SHOTS.find(s => t >= s[0] && t < s[1]) || SHOTS[SHOTS.length - 1];
+  const lt = t - sh[0], D = sh[1] - sh[0]; _gid = 0; _gf = Math.floor(t * 30);
+  const r = sh[3](lt, D, t);
+  const c = { ...r.cam, ...(r.shake || {}) };
+  document.getElementById('svg').innerHTML = defs(Math.floor(t * 30) % 97) + cam(c, r.world + fastTex() + (r.light || '')) + (r.overlay || '') + fastFinish();
+  document.getElementById('label').textContent = sh[2] || '';
+}
+window.DUR = DUR; window.SHOTS = SHOTS; render(0);
+</script></body></html>
