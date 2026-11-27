@@ -1,0 +1,31 @@
+{
+  "name": "neon-shadow-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI cinematic animation studio for Neon Shadow style vertical/horizontal videos",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:render": "tsx --conditions=react-server scripts/test-render.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.14.0",
+    "next": "^15.5.29",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "server-only": "^0.0.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.7",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

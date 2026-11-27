@@ -1,0 +1,8 @@
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+# Runtime data: projects, generated media, encrypted API keys
+data/
+.env
+.env.local
