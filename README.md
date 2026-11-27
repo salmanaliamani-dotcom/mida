@@ -27,6 +27,21 @@ Requirements:
 - Node.js 20 or newer.
 - **FFmpeg** with libass, libx264 and libmp3lame. Ubuntu's `apt install ffmpeg` has all three. You can point `FFMPEG_PATH` / `FFPROBE_PATH` at a custom build.
 
+## Put it online (open it from your phone)
+
+The app needs a server that can run FFmpeg, keep long jobs running, and keep files on a disk. Serverless hosts like Vercel don't fit those needs. A container host with a volume does. The `Dockerfile` includes FFmpeg.
+
+**Railway (works from a phone browser):**
+1. Go to [railway.com](https://railway.com) and sign in with GitHub.
+2. **New Project → Deploy from GitHub repo →** pick this repo and the branch. Railway detects the `Dockerfile` and builds the image.
+3. In the service, open **Volumes**, add a volume, and mount it at **`/data`**. Your projects, videos and keys are stored there.
+4. Open **Variables** and add:
+   - `APP_PASSWORD` (required: without it, anyone with the link can use your API keys)
+   - your API keys (`ANTHROPIC_API_KEY`, `FAL_KEY`, `ELEVENLABS_API_KEY`, …). You can also enter the keys later on the Settings page.
+5. **Settings → Networking → Generate Domain.** Open that link on your phone. The browser asks for a username (type anything) and the password.
+
+Any Docker host with a persistent disk works the same way (Render, Fly.io, a VPS with `docker run -p 3000:3000 -v studio-data:/data -e APP_PASSWORD=... <image>`).
+
 ## API keys and paid services
 
 Open **Settings & API keys** in the app, or set environment variables. Environment variables take precedence over keys saved in the app. Keys saved in the app are encrypted with AES-256-GCM in `data/settings.json`; set `APP_SECRET` to control the encryption key. Keys are never sent back to the browser: the UI only shows a masked preview.
