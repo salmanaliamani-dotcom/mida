@@ -1,0 +1,4 @@
+/*.mp3
+  Cache-Control: public, max-age=86400
+/app.js
+  Cache-Control: public, max-age=300

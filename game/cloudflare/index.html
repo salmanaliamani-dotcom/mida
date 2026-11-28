@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+<title>لغز مرسى الصويرة</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Cairo:wght@600;800&display=swap">
+<style>
+/* Layout: full-screen 3D canvas; HUD floats on the safe-area edges, controls in the thumb zones. Single dark harbour-at-dusk look. */
+:root{
+  --ink:#f4ead8;        /* chalk white of the quay walls */
+  --night:#0c1626;      /* sea after sunset */
+  --panel:rgba(12,22,38,.86);
+  --sardine:#ffd166;    /* clue yellow, the markers above evidence */
+  --harbour:#1f6fc2;    /* Essaouira blue doors and boats */
+  --rust:#e0592a;       /* net floats */
+  --ok:#3fbf7f;
+  --display:'Aref Ruqaa','Cairo',serif;
+  --ui:'Cairo','Segoe UI',Tahoma,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%;}
+body{background:var(--night);color:var(--ink);font-family:var(--ui);overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;}
+button{font-family:var(--ui);cursor:pointer;}
+button:focus-visible{outline:3px solid var(--sardine);outline-offset:3px;}
+.layer{position:fixed;inset:0;pointer-events:none;direction:rtl;}
+.layer>*{pointer-events:auto;}
+
+/* title */
+#title{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;
+  padding:0 max(16px,env(safe-area-inset-right,0px)) calc(48px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background:linear-gradient(to top,rgba(8,14,26,.95) 0%,rgba(8,14,26,.55) 45%,rgba(8,14,26,0) 75%);text-align:center;}
+#title .eyebrow{font-size:15px;letter-spacing:.04em;color:var(--sardine);font-weight:800;}
+#title h1{font-family:var(--display);font-size:clamp(44px,12vw,76px);line-height:1.05;margin:0;text-wrap:balance;text-shadow:0 4px 0 rgba(0,0,0,.35);}
+#title p{margin:0;max-width:34ch;font-size:16px;line-height:1.7;opacity:.9;}
+#start{margin-top:8px;font-size:22px;font-weight:800;padding:14px 46px;border-radius:999px;border:3px solid #17120f;background:var(--sardine);color:#17120f;box-shadow:0 5px 0 #17120f;}
+#start:disabled{opacity:.5;}
+#start:active{transform:translateY(3px);box-shadow:0 2px 0 #17120f;}
+#loading{font-size:13px;opacity:.7;}
+
+/* hud */
+#hud{position:fixed;top:0;left:0;right:0;display:flex;gap:10px;align-items:flex-start;justify-content:space-between;direction:rtl;
+  padding:calc(10px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));pointer-events:none;}
+#hud>*{pointer-events:auto;}
+#obj{background:var(--panel);border:2px solid rgba(255,209,102,.5);border-radius:14px;padding:8px 14px;font-weight:800;font-size:15px;line-height:1.5;max-width:68vw;min-width:0;}
+#nbbtn{flex:none;display:flex;align-items:center;gap:8px;background:var(--harbour);color:#fff;border:2px solid #17120f;border-radius:14px;padding:8px 12px;font-weight:800;font-size:15px;box-shadow:0 3px 0 #17120f;}
+#nbbtn b{background:var(--sardine);color:#17120f;border-radius:999px;min-width:24px;padding:0 6px;font-variant-numeric:tabular-nums;}
+
+#skip{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));background:var(--panel);color:var(--ink);border:1.5px solid rgba(244,234,216,.4);border-radius:999px;padding:6px 18px;font-weight:800;font-size:15px;}
+
+#cap{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(180px + env(safe-area-inset-bottom,0px));width:min(92vw,620px);text-align:center;direction:rtl;
+  font-weight:800;font-size:clamp(22px,6vw,32px);line-height:1.35;color:#fff;-webkit-text-stroke:0;text-shadow:0 0 6px #000,0 2px 0 #000,0 -2px 0 #000,2px 0 0 #000,-2px 0 0 #000;pointer-events:none;}
+
+/* controls */
+#ctrl{position:fixed;inset:auto 0 0 0;height:0;}
+#joy{position:fixed;left:calc(max(22px,env(safe-area-inset-left,0px)) + 8px);bottom:calc(26px + env(safe-area-inset-bottom,0px));width:132px;height:132px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,234,216,.10) 0%,rgba(244,234,216,.18) 70%);border:3px solid rgba(244,234,216,.45);touch-action:none;}
+#knob{position:absolute;left:50%;top:50%;width:58px;height:58px;border-radius:50%;transform:translate(-50%,-50%);background:var(--ink);border:3px solid #17120f;box-shadow:0 3px 0 #17120f;pointer-events:none;}
+#act{position:fixed;right:max(22px,env(safe-area-inset-right,0px));bottom:calc(44px + env(safe-area-inset-bottom,0px));max-width:46vw;
+  background:var(--sardine);color:#17120f;border:3px solid #17120f;border-radius:20px;padding:14px 20px;font-weight:800;font-size:18px;box-shadow:0 5px 0 #17120f;animation:bob 1.2s ease-in-out infinite;}
+#act:active{transform:translateY(3px);box-shadow:0 2px 0 #17120f;}
+@keyframes bob{50%{translate:0 -4px}}
+
+#toast{position:fixed;left:50%;top:calc(72px + env(safe-area-inset-top,0px));transform:translateX(-50%);width:max-content;max-width:min(92vw,520px);background:#fff6c8;color:#2a1a12;border:2px solid #17120f;border-radius:12px;padding:8px 14px;font-weight:800;font-size:15px;line-height:1.5;text-align:center;direction:rtl;pointer-events:none;}
+.pop{animation:pop .28s ease-out;}
+@keyframes pop{0%{scale:.85;opacity:0}70%{scale:1.04}100%{scale:1;opacity:1}}
+
+/* sheets: notebook, quiz, result */
+.sheet{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,10,20,.55);direction:rtl;
+  padding:0 max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));}
+.paper{width:min(100%,560px);max-height:86%;overflow:auto;background:#f6efdc;color:#2a1a12;border:3px solid #17120f;border-radius:18px;padding:18px 18px 20px;box-shadow:0 8px 0 rgba(0,0,0,.35);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 33px,rgba(31,111,194,.18) 33px 34px);}
+.paper h2{font-family:var(--display);font-size:30px;margin:0 0 6px;color:#8e2a20;}
+.small{font-size:13px;font-weight:800;color:#8a6a42;letter-spacing:.03em;}
+#nblist{list-style:none;margin:8px 0 14px;padding:0;display:grid;gap:6px;}
+#nblist li{font-weight:800;font-size:16px;line-height:1.6;padding-inline-start:26px;position:relative;}
+#nblist li::before{content:'✎';position:absolute;inset-inline-start:0;color:#8e2a20;}
+#nblist li.miss{opacity:.45;font-weight:600;}
+.close{background:#2a1a12;color:#f6efdc;border:0;border-radius:12px;padding:10px 22px;font-weight:800;font-size:16px;}
+#qtext{font-size:21px;font-weight:800;line-height:1.55;margin:4px 0 12px;text-wrap:balance;}
+#qopts{display:grid;gap:9px;}
+.opt{text-align:start;background:#fff;color:#2a1a12;border:2.5px solid #17120f;border-radius:14px;padding:11px 14px;font-size:16px;font-weight:800;line-height:1.5;box-shadow:0 3px 0 #17120f;}
+.opt.bad{background:#f7c9bd;border-color:#a33;}
+.opt.chk[aria-pressed="true"]{background:var(--sardine);}
+.opt.chk[aria-pressed="true"]::after{content:' ✓';}
+.go{margin-top:4px;background:var(--harbour);color:#fff;border:2.5px solid #17120f;border-radius:14px;padding:12px;font-size:18px;font-weight:800;box-shadow:0 3px 0 #17120f;}
+#qhint{margin-top:12px;background:#fff6c8;border:2px dashed #8e2a20;border-radius:12px;padding:9px 12px;font-weight:800;font-size:15px;line-height:1.6;}
+#done .paper{text-align:center;}
+#stars{font-size:46px;color:#d99a00;letter-spacing:.1em;-webkit-text-stroke:1.5px #17120f;}
+#done p{font-size:16px;line-height:1.7;margin:6px 0;}
+.next{display:inline-block;margin-top:6px;background:#e8dcc0;border-radius:10px;padding:6px 12px;font-weight:800;font-size:14px;}
+@media (prefers-reduced-motion:reduce){#act{animation:none}.pop{animation:none}}
+</style>
+
+</head>
+<body>
+<canvas id="c" aria-label="مرسى الصويرة"></canvas>
+
+<div class="layer" id="title">
+  <div class="eyebrow">اللغز 1 من 12 · الموجة</div>
+  <h1>لغز مرسى الصويرة</h1>
+  <p>فلوكة رجعات بواحد من ربعة. نتا اللي كتسجل الفلايك فالمرسى. فتش، جمع الأدلة، وقول واش يونس كيقول الحقيقة.</p>
+  <button id="start" disabled>ابدا</button>
+  <div id="loading">كيتحمل…</div>
+</div>
+
+<div id="hud" hidden>
+  <div id="obj">…</div>
+  <button id="nbbtn" aria-label="الكارني">الكارني <b id="nbn">0</b></button>
+</div>
+<button id="skip" hidden>دوز ›</button>
+<div id="cap" hidden></div>
+<div id="toast" hidden></div>
+
+<div id="ctrl" hidden>
+  <div id="joy" aria-label="جويستيك"><div id="knob"></div></div>
+  <button id="act" hidden>فتش</button>
+</div>
+
+<div class="sheet" id="nb" hidden>
+  <div class="paper">
+    <div class="small">الكارني ديالك</div>
+    <h2>الأدلة</h2>
+    <ul id="nblist"></ul>
+    <button class="close" id="nbclose">سد</button>
+  </div>
+</div>
+
+<div class="sheet" id="q" hidden>
+  <div class="paper">
+    <div class="small" id="qtitle">السؤال</div>
+    <div id="qtext"></div>
+    <div id="qopts"></div>
+    <div id="qhint" hidden></div>
+  </div>
+</div>
+
+<div class="sheet" id="done" hidden>
+  <div class="paper">
+    <div class="small">اللغز 1 · الموجة</div>
+    <h2>حليتي اللغز</h2>
+    <div id="stars">★★★</div>
+    <p id="dmist"></p>
+    <p>يونس ما قالش الحقيقة كاملة. ولكن فين مشات مبروكة النهار كامل؟</p>
+    <div class="next">اللغز 2 · المازوط · قريبا</div>
+    <p><button class="close" id="again">عاود من اللول</button></p>
+  </div>
+</div>
+
+<audio id="vo" src="voice_p1.mp3" preload="auto"></audio>
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
